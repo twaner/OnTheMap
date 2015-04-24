@@ -13,6 +13,10 @@
 		19DD7F711AE9CBB20088EA94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19DD7F701AE9CBB20088EA94 /* Images.xcassets */; };
 		19DD7F741AE9CBB20088EA94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19DD7F721AE9CBB20088EA94 /* LaunchScreen.xib */; };
 		19DD7F801AE9CBB20088EA94 /* On_The_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F7F1AE9CBB20088EA94 /* On_The_MapTests.swift */; };
+		19DD7F8D1AE9CCE50088EA94 /* OTMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F8C1AE9CCE50088EA94 /* OTMClient.swift */; };
+		19DD7F8F1AE9D5B70088EA94 /* OTMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F8E1AE9D5B70088EA94 /* OTMConstants.swift */; };
+		19DD7F911AE9D9F90088EA94 /* OTMConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F901AE9D9F90088EA94 /* OTMConvenience.swift */; };
+		19DD7F931AE9DA370088EA94 /* OTMStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F921AE9DA370088EA94 /* OTMStudent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		19DD7F791AE9CBB20088EA94 /* On The MapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On The MapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19DD7F7E1AE9CBB20088EA94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19DD7F7F1AE9CBB20088EA94 /* On_The_MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_The_MapTests.swift; sourceTree = "<group>"; };
+		19DD7F8C1AE9CCE50088EA94 /* OTMClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMClient.swift; sourceTree = "<group>"; };
+		19DD7F8E1AE9D5B70088EA94 /* OTMConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMConstants.swift; sourceTree = "<group>"; };
+		19DD7F901AE9D9F90088EA94 /* OTMConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMConvenience.swift; sourceTree = "<group>"; };
+		19DD7F921AE9DA370088EA94 /* OTMStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMStudent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +85,9 @@
 		19DD7F661AE9CBB20088EA94 /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
+				19DD7F8A1AE9CC210088EA94 /* Clients */,
+				19DD7F891AE9CBBD0088EA94 /* Controllers */,
 				19DD7F691AE9CBB20088EA94 /* AppDelegate.swift */,
-				19DD7F6B1AE9CBB20088EA94 /* ViewController.swift */,
-				19DD7F6D1AE9CBB20088EA94 /* Main.storyboard */,
-				19DD7F701AE9CBB20088EA94 /* Images.xcassets */,
-				19DD7F721AE9CBB20088EA94 /* LaunchScreen.xib */,
 				19DD7F671AE9CBB20088EA94 /* Supporting Files */,
 			);
 			path = "On The Map";
@@ -90,6 +96,9 @@
 		19DD7F671AE9CBB20088EA94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				19DD7F6D1AE9CBB20088EA94 /* Main.storyboard */,
+				19DD7F701AE9CBB20088EA94 /* Images.xcassets */,
+				19DD7F721AE9CBB20088EA94 /* LaunchScreen.xib */,
 				19DD7F681AE9CBB20088EA94 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -110,6 +119,33 @@
 				19DD7F7E1AE9CBB20088EA94 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19DD7F891AE9CBBD0088EA94 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				19DD7F6B1AE9CBB20088EA94 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		19DD7F8A1AE9CC210088EA94 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				19DD7F8B1AE9CCAD0088EA94 /* OTM */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		19DD7F8B1AE9CCAD0088EA94 /* OTM */ = {
+			isa = PBXGroup;
+			children = (
+				19DD7F8C1AE9CCE50088EA94 /* OTMClient.swift */,
+				19DD7F8E1AE9D5B70088EA94 /* OTMConstants.swift */,
+				19DD7F901AE9D9F90088EA94 /* OTMConvenience.swift */,
+				19DD7F921AE9DA370088EA94 /* OTMStudent.swift */,
+			);
+			name = OTM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19DD7F931AE9DA370088EA94 /* OTMStudent.swift in Sources */,
+				19DD7F911AE9D9F90088EA94 /* OTMConvenience.swift in Sources */,
+				19DD7F8D1AE9CCE50088EA94 /* OTMClient.swift in Sources */,
 				19DD7F6C1AE9CBB20088EA94 /* ViewController.swift in Sources */,
+				19DD7F8F1AE9D5B70088EA94 /* OTMConstants.swift in Sources */,
 				19DD7F6A1AE9CBB20088EA94 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
