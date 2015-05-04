@@ -178,31 +178,4 @@ extension OTMClient {
             }
         }
     }
-    
-    /*
-    func getParse(method: String, parameters: [String: AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-    
-    var mutableParameters = parameters
-    let urlString = Constants.parseURL + method + OTMClient.escapedParameters(mutableParameters)
-    let url = NSURL(string: urlString)
-    println("getParse url \(urlString)")
-    let request = NSMutableURLRequest(URL: url!)
-    request.addValue(Constants.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-    request.addValue(Constants.ParseRestApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-    let task = session.dataTaskWithRequest(request) {
-    (data, response, downloadError) in
-    if let error = downloadError {
-    let newError = OTMClient.errorForData(data, response: response, error: error)
-    completionHandler(result: nil, error: downloadError)
-    println("getParse \(method)  \(error)")
-    } else {
-    println("getParse \(method)  \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-    OTMClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
-    }
-    }
-    task.resume()
-    return task
-    }
-    */
-
 }

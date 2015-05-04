@@ -20,6 +20,7 @@
 		19DD7F971AEB24410088EA94 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F961AEB24410088EA94 /* MapViewController.swift */; };
 		19DD7F991AEB24730088EA94 /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */; };
 		19DD7F9B1AED8D5C0088EA94 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */; };
+		19FDE4791AF81FA9007857EC /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FDE4781AF81FA9007857EC /* SubmitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		19DD7F961AEB24410088EA94 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewController.swift; sourceTree = "<group>"; };
 		19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		19FDE4781AF81FA9007857EC /* SubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				19DD7F961AEB24410088EA94 /* MapViewController.swift */,
 				19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */,
 				19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */,
+				19FDE4781AF81FA9007857EC /* SubmitViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				19DD7F911AE9D9F90088EA94 /* OTMConvenience.swift in Sources */,
 				19DD7F9B1AED8D5C0088EA94 /* AddLocationViewController.swift in Sources */,
 				19DD7F8D1AE9CCE50088EA94 /* OTMClient.swift in Sources */,
+				19FDE4791AF81FA9007857EC /* SubmitViewController.swift in Sources */,
 				19DD7F8F1AE9D5B70088EA94 /* OTMConstants.swift in Sources */,
 				19DD7F6A1AE9CBB20088EA94 /* AppDelegate.swift in Sources */,
 				19DD7F971AEB24410088EA94 /* MapViewController.swift in Sources */,
@@ -461,6 +465,7 @@
 				19DD7F851AE9CBB20088EA94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19DD7F861AE9CBB20088EA94 /* Build configuration list for PBXNativeTarget "On The MapTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +474,7 @@
 				19DD7F881AE9CBB20088EA94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
