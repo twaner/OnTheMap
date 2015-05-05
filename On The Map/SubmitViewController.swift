@@ -78,8 +78,8 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
                 self.newRecord()
             }
         } else {
-            let url = self.linkTextField.text
-            self.displayAlert("Incorrect URL", error: "\(url) is not a valid URL. Please enter a correct one.")
+//            let url = self.linkTextField.text
+//            self.displayAlert("Incorrect URL", error: "\(url) is not a valid URL. Please enter a correct one.")
         }
         let url = NSURL(string: self.linkTextField.text)
         if (url != nil && url?.scheme != nil && url?.host != nil) {
@@ -116,6 +116,11 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         self.mapView.showAnnotations([annotation], animated: true)
     }
     
+    func goToMapView() {
+        let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("MapView") as! MapViewController
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
     ///
     /// Uses the POST Student Location API to add a new Student location.
     func newRecord() {
@@ -125,7 +130,7 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
                 // TODO: Warning failed to post locations
             } else {
                 println("getCoordinates result \(result)")
-                // TODO: Post location
+                self.goToMapView()
             }
         })
     }
@@ -139,7 +144,7 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
                 // TODO: Warning failed to post locations
             } else {
                 println("getCoordinates result \(result)")
-                // TODO: Post location
+                self.goToMapView()
             }
         }
     }
@@ -162,11 +167,5 @@ extension String {
         let urlRegex = NSRegularExpression(pattern: pattern2, options: .CaseInsensitive, error: nil)
         let matches = urlRegex?.firstMatchInString(self, options: nil, range: NSMakeRange(0, count(self)))
         return urlRegex?.firstMatchInString(self, options: nil, range: NSMakeRange(0, count(self))) != nil
-//        return urlRegex?.firstMatchInString(, options: nil, range: NSMakeRange(0, count(self)))
-        
-//        if let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegex!) {
-//            return urlTest.evaluateWithObject(url)
-//        }
-        
     }
 }
