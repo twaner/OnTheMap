@@ -27,6 +27,8 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.textField.delegate = self
         self.displayActivityView(false)
+        self.hidesBottomBarWhenPushed = false
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,17 +53,9 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
             } else {
                 if (placemarks != nil && placemarks.count > 0) {
                     let result = placemarks[0] as! CLPlacemark
-                    let placemark = MKPlacemark(placemark: result)
-                    self.locationPlacemark = placemark
-                    var lat = placemark.location.coordinate.latitude
-                    var long = placemark.location.coordinate.longitude
-                    println("getCoordinates placemark \(lat)   \(long)")
-                    
-                    if self.overWrite {
-                        self.updateRecord()
-                    } else {
-                        self.newRecord()
-                    }
+                    self.locationPlacemark = MKPlacemark(placemark: result)
+                        self.displayActivityView(false)
+                        self.performSegueWithIdentifier("SubmitSegue", sender: self)
                 } else {
                     println("Issue with placemark")
                     // TODO: Warning failed to post placemark
@@ -71,33 +65,6 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    func newRecord() {
-        OTMClient.sharedInstance().postStudentLocation(OTMClient.sharedInstance().currentUser!, placemark: self.locationPlacemark!, completionHandler: { (sucess, result, error) -> Void in
-            if let error = error {
-                println("newRecord error \(error)")
-                // TODO: Warning failed to post locations
-                self.displayActivityView(false)
-            } else {
-                println("getCoordinates result \(result)")
-                // TODO: Posted location
-                self.displayActivityView(false)
-            }
-        })
-    }
-    
-    func updateRecord() {
-        OTMClient.sharedInstance().putStudentLocation(OTMClient.sharedInstance().currentUser!, placemark: self.locationPlacemark!) { (sucess, result, error) -> Void in
-            if let error = error {
-                println("updateRecord error \(error)")
-                // TODO: Warning failed to post locations
-                self.displayActivityView(false)
-            } else {
-                println("getCoordinates result \(result)")
-                // TODO: Posted location
-                self.displayActivityView(false)
-            }
-        }
-    }
     
     // MARK: - UITextFieldDelegate methods
     
@@ -169,14 +136,15 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "SubmitSegue" {
+            let nextVC = segue.destinationViewController as! SubmitViewController
+            nextVC.student = OTMClient.sharedInstance().currentUser!
+            nextVC.placemark = self.locationPlacemark
+            nextVC.overWrite = self.overWrite
+        }
     }
-    */
-
 }

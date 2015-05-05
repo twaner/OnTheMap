@@ -30,7 +30,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.hidesBottomBarWhenPushed = true
+        self.tabBarController?.tabBar.hidden = false
         // TODO - get students, populate map with pins
         self.populate()
         
@@ -156,7 +157,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                         let annotation = MKPointAnnotation()
                         annotation.coordinate = location
                         annotation.title = "\(q.firstName!) \(q.lastName!)"
-                        annotation.subtitle = q.mediaURL!
+                        if let mediaURL = q.mediaURL {
+                            annotation.subtitle = q.mediaURL!
+                        } else {
+                            annotation.subtitle = "No URL provided"
+                        }
+                        
                         self.mapView.addAnnotation(annotation)
                         self.mapAnnotations.append(annotation)
                     }
