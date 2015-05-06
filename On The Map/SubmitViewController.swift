@@ -37,12 +37,10 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.updateMap()
         })
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - UITextFieldDelegate methods
@@ -53,7 +51,6 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        //TODO: Validate URL
         let type: NSTextCheckingType = .Link
         var error: NSError?
         let detection = NSDataDetector(types: NSTextCheckingType.Link.rawValue, error: &error)
@@ -65,6 +62,14 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - IBActions
+    
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        // :TODO - Go back to MapView
+//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MapVC") as! MapViewController
+//        self.presentViewController(vc, animated: true, completion: nil)
+//        self.performSegueWithIdentifier("BackToMapSegue", sender: self)
+        self.goToMapView()
+    }
     
     ///
     ///Checks if the URL submitted is valid and updates the current user's media url.
@@ -114,11 +119,13 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         annotation.coordinate = location
         self.mapView.addAnnotation(annotation)
         self.mapView.showAnnotations([annotation], animated: true)
-    }
+     }
     
     func goToMapView() {
-        let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("MapView") as! MapViewController
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("MapVC") as! MapViewController
+            self.presentViewController(nextVC, animated: true, completion: nil)
+        })
     }
     
     ///
@@ -149,15 +156,15 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    /*
     // MARK: - Navigation
-
+    
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "BackToMapSegue" {
+//            let nextVC = 
+        }
     }
-    */
 }
 
 extension String {

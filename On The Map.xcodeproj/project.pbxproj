@@ -21,6 +21,8 @@
 		19DD7F991AEB24730088EA94 /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */; };
 		19DD7F9B1AED8D5C0088EA94 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */; };
 		19FDE4791AF81FA9007857EC /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FDE4781AF81FA9007857EC /* SubmitViewController.swift */; };
+		7EE5ADD51AF94B15005E310D /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE5ADD41AF94B15005E310D /* AddRecordViewController.swift */; };
+		7EE5ADD71AF963BD005E310D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE5ADD61AF963BD005E310D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewController.swift; sourceTree = "<group>"; };
 		19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		19FDE4781AF81FA9007857EC /* SubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
+		7EE5ADD41AF94B15005E310D /* AddRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
+		7EE5ADD61AF963BD005E310D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EE5ADD71AF963BD005E310D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +80,7 @@
 		19DD7F5B1AE9CBB20088EA94 = {
 			isa = PBXGroup;
 			children = (
+				7EE5ADD61AF963BD005E310D /* MapKit.framework */,
 				19DD7F661AE9CBB20088EA94 /* On The Map */,
 				19DD7F7C1AE9CBB20088EA94 /* On The MapTests */,
 				19DD7F651AE9CBB20088EA94 /* Products */,
@@ -137,6 +143,7 @@
 				19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */,
 				19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */,
 				19FDE4781AF81FA9007857EC /* SubmitViewController.swift */,
+				7EE5ADD41AF94B15005E310D /* AddRecordViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -263,6 +270,7 @@
 				19DD7F951AEADE580088EA94 /* LoginViewController.swift in Sources */,
 				19DD7F931AE9DA370088EA94 /* OTMStudent.swift in Sources */,
 				19DD7F991AEB24730088EA94 /* StudentTableViewController.swift in Sources */,
+				7EE5ADD51AF94B15005E310D /* AddRecordViewController.swift in Sources */,
 				19DD7F911AE9D9F90088EA94 /* OTMConvenience.swift in Sources */,
 				19DD7F9B1AED8D5C0088EA94 /* AddLocationViewController.swift in Sources */,
 				19DD7F8D1AE9CCE50088EA94 /* OTMClient.swift in Sources */,

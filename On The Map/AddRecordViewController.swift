@@ -1,39 +1,46 @@
 //
-//  AddLocationViewController.swift
+//  AddRecordViewController.swift
 //  On The Map
 //
-//  Created by Taiowa Waner on 4/26/15.
+//  Created by Taiowa Waner on 5/5/15.
 //  Copyright (c) 2015 Taiowa Waner. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-class AddLocationViewController: UIViewController, UITextFieldDelegate {
+class AddRecordViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var studyingLabel: UILabel!
+    @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var findOnMapButton: UIButton!
+    @IBOutlet weak var linkTextField: UITextField!
     
     // MARK: - Props
     
     var location: CLLocation? = nil
     var locationPlacemark: MKPlacemark? = nil
     var overWrite = false
-    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.textField.delegate = self
+//        self.locationTextField.delegate = self
+//        self.linkTextField.delegate = self
         self.displayActivityView(false)
-//        self.hidesBottomBarWhenPushed = false
+        self.hidesBottomBarWhenPushed = false
 
+        // Do any additional setup after loading the view.
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,8 +61,8 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
                 if (placemarks != nil && placemarks.count > 0) {
                     let result = placemarks[0] as! CLPlacemark
                     self.locationPlacemark = MKPlacemark(placemark: result)
-                        self.displayActivityView(false)
-                        self.performSegueWithIdentifier("SubmitSegue", sender: self)
+                    self.displayActivityView(false)
+//                    self.performSegueWithIdentifier("SubmitSegue", sender: self)
                 } else {
                     println("Issue with placemark")
                     // TODO: Warning failed to post placemark
@@ -65,6 +72,13 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    func showContainer(show: Bool) {
+        self.studyingLabel.hidden = show
+        self.findOnMapButton.hidden = show
+        self.containerView.hidden = !show
+        self.locationTextField.hidden = !show
+        
+    }
     
     // MARK: - UITextFieldDelegate methods
     
@@ -85,24 +99,6 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         
         textField.replaceRange(textRange, withText: string.uppercaseString)
         return false
-    }
-
-    
-    // MARK: - IBActions
-    
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        // :TODO - Go back to MapView
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MapVC") as! MapViewController
-        self.presentViewController(vc, animated: true) { () -> Void in
-        }
-//        self.performSegueWithIdentifier("MapVCSegue", sender: nil)
-    }
-    
-    
-    @IBAction func findButtonTapped(sender: UIButton) {
-        // TODO: activity view indicator
-        self.getCoordinates(self.textField.text)
-        var location: MKPlacemark? = self.locationPlacemark
     }
     
     // MARK: - Helpers
@@ -131,22 +127,19 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
             
             self.dismissViewControllerAnimated(true, completion: nil)
-            
         }))
-        
         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
     
-    // MARK: - Navigation
+    // MARK: - IBActions
+    
+    
+    @IBAction func findOnMapTapped(sender: UIButton) {
+        
+        self.getCoordinates(self.locationTextField.text)
+        var location: MKPlacemark? = self.locationPlacemark
+    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "SubmitSegue" {
-            let nextVC = segue.destinationViewController as! SubmitViewController
-            nextVC.student = OTMClient.sharedInstance().currentUser!
-            nextVC.placemark = self.locationPlacemark
-            nextVC.overWrite = self.overWrite
-        }
+    @IBAction func submitButtonTapped(sender: UIButton) {
     }
 }

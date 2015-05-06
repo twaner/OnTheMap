@@ -22,6 +22,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var mapAnnotations: [MKPointAnnotation] = [MKPointAnnotation]()
     var getUdacityUser: NSDictionary?
     var currentUserOnMap = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
@@ -30,8 +31,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.hidesBottomBarWhenPushed = true
+//        self.hidesBottomBarWhenPushed = false
         self.tabBarController?.tabBar.hidden = false
+        self.navigationController?.navigationBarHidden = false
         // TODO - get students, populate map with pins
         self.populate()
         
@@ -48,6 +50,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     //TODO Handle not being able to get student data
+    
+    ///
+    ///Creates a Student object from a dictionary.
+    ///:param: dictionary Dictionary that contains student information.
     func createStudentFromPublicData(dictionary: NSDictionary) {
         OTMClient.sharedInstance().currentUser!.uniqueKey = OTMClient.sharedInstance().userID!
         OTMClient.sharedInstance().currentUser!.firstName = dictionary.valueForKey(OTMClient.JSONResponseKeys.First_Name) as? String
@@ -123,6 +129,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             var alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite it?", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Overwrite", style: .Default, handler: { (action) -> Void in
                 self.performSegueWithIdentifier("showAddSegue", sender: self)
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AddVC") as! AddLocationViewController
+//                vc.overWrite = self.currentUserOnMap
+//                self.navigationController?.pushViewController(vc, animated: true)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { action in
             }))
