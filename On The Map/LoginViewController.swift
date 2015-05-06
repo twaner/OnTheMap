@@ -79,7 +79,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Helpers
     
-    ///
     /// Displays an UIAlertController.
     /// :param: title of Alert
     /// :param: error message of alert
