@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="t.waner@gmail.com" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Txa-rK-Qmk">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Txa-rK-Qmk">
                                 <rect key="frame" x="16" y="361" width="568" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -26,7 +26,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hoodlife12#$" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0N-a3-U5b">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0N-a3-U5b">
                                 <rect key="frame" x="16" y="407" width="568" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -44,7 +44,7 @@
                                     <action selector="loginButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Bms-Go-Af6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTL-nS-wDo">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTL-nS-wDo">
                                 <rect key="frame" x="16" y="524" width="568" height="30"/>
                                 <state key="normal" title="Login With Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,7 +192,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOICEVILLE, NY" placeholder="Enter Your Location Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pUQ-iy-XKn">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Location Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pUQ-iy-XKn">
                                             <rect key="frame" x="8" y="23" width="584" height="24"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -469,6 +469,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ciN-Fc-vdy">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -479,10 +482,12 @@
                             <constraint firstItem="zj7-g3-Ngd" firstAttribute="leading" secondItem="uEV-ve-s3M" secondAttribute="leadingMargin" id="7fh-b0-AxE"/>
                             <constraint firstItem="mFf-yF-A9n" firstAttribute="top" secondItem="ETh-ut-gBw" secondAttribute="bottom" id="Acq-7T-Emr"/>
                             <constraint firstItem="RCF-WZ-rCh" firstAttribute="top" secondItem="uEV-ve-s3M" secondAttribute="top" id="CyV-yp-O2n"/>
+                            <constraint firstAttribute="centerX" secondItem="ciN-Fc-vdy" secondAttribute="centerX" id="Jdf-YD-qLN"/>
                             <constraint firstAttribute="centerX" secondItem="aLO-F5-qMR" secondAttribute="centerX" constant="-13" id="NdE-pi-ERk"/>
                             <constraint firstItem="RCF-WZ-rCh" firstAttribute="trailing" secondItem="ETh-ut-gBw" secondAttribute="trailing" id="NoE-lU-wL9"/>
                             <constraint firstItem="aLO-F5-qMR" firstAttribute="top" secondItem="ETh-ut-gBw" secondAttribute="bottom" constant="-99" id="O0I-qO-ar6"/>
                             <constraint firstItem="ETh-ut-gBw" firstAttribute="top" secondItem="dpU-aZ-LRN" secondAttribute="bottom" constant="92" id="OAO-4R-XuQ"/>
+                            <constraint firstAttribute="centerY" secondItem="ciN-Fc-vdy" secondAttribute="centerY" id="Pbf-LY-YyD"/>
                             <constraint firstAttribute="trailing" secondItem="ETh-ut-gBw" secondAttribute="trailing" id="Tpz-hS-fL3"/>
                             <constraint firstItem="RCF-WZ-rCh" firstAttribute="leading" secondItem="ETh-ut-gBw" secondAttribute="leading" id="aNU-gj-Ien"/>
                             <constraint firstAttribute="centerX" secondItem="ETh-ut-gBw" secondAttribute="centerX" id="e6u-Pv-eCI"/>
@@ -499,6 +504,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="ciN-Fc-vdy" id="44I-2E-wBb"/>
                         <outlet property="linkTextField" destination="zj7-g3-Ngd" id="164-H9-G3z"/>
                         <outlet property="mapView" destination="ETh-ut-gBw" id="lD1-pW-HYm"/>
                     </connections>
@@ -603,6 +609,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dqJ-DD-HvW"/>
+        <segue reference="qlL-Gd-p8Z"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,15 +44,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var beginning: UITextPosition = textField.beginningOfDocument
-        var start: UITextPosition =  textField.positionFromPosition(beginning, inDirection: .Right, offset: range.location)!
-        var end: UITextPosition = textField.positionFromPosition(start, offset: range.length)!
-        var textRange: UITextRange = textField.textRangeFromPosition(start, toPosition: end)!
-        
-        textField.replaceRange(textRange, withText: string.uppercaseString)
-        return false
-    }
+//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+//        var beginning: UITextPosition = textField.beginningOfDocument
+//        var start: UITextPosition =  textField.positionFromPosition(beginning, inDirection: .Right, offset: range.location)!
+//        var end: UITextPosition = textField.positionFromPosition(start, offset: range.length)!
+//        var textRange: UITextRange = textField.textRangeFromPosition(start, toPosition: end)!
+//        
+//        textField.replaceRange(textRange, withText: string.uppercaseString)
+//        return false
+//    }
     
     // MARK: - Actions
 

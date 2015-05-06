@@ -9,12 +9,13 @@
 import UIKit
 import MapKit
 
-class SubmitViewController: UIViewController, UITextFieldDelegate {
+class SubmitViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate {
     
     // MARK: - Outlets
     
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Props
     
@@ -35,6 +36,7 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.displayActivityView(true)
             self.updateMap()
         })
     }
@@ -86,7 +88,31 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: - MKMapViewDelegate
+    
+    func mapViewWillStartLoadingMap(mapView: MKMapView!) {
+        self.displayActivityView(true)
+    }
+    
+    func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
+        self.displayActivityView(false)
+    }
+    
     // MARK: - Helpers
+    
+    ///
+    /// Displays or hides an activity indicator.
+    ///
+    /// :param: on Turns activity indicator on or off.
+    func displayActivityView(on: Bool) {
+        if on {
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.alpha = 1.0
+        } else {
+            self.activityIndicator.alpha = 0.0
+            self.activityIndicator.stopAnimating()
+        }
+    }
     
     ///
     ///Displays an UIAlertController
