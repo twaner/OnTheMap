@@ -91,11 +91,7 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        // :TODO - Go back to MapView
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MapVC") as! MapViewController
-        self.presentViewController(vc, animated: true) { () -> Void in
-        }
-//        self.performSegueWithIdentifier("MapVCSegue", sender: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

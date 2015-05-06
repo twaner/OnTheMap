@@ -16,34 +16,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    // MARK: - Props
-//    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.userNameTextField.delegate = self
+        self.passwordTextField.delegate = self
         self.activityIndicator.alpha = 0.0
         self.navigationItem.title = "On The Map"
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: - UITextFieldDelegate methods
     
@@ -75,22 +61,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if !self.userNameTextField.text.isEmpty && !self.passwordTextField.text.isEmpty {
             OTMClient.sharedInstance().postCreateSession(userNameTextField.text, password: passwordTextField.text, completionHandler: { (result, error) -> Void in
                 if let error = error {
-                    // Alert something went wrong
-                    println("loginButtonTapped:ERROR \(error)")
                     self.displayActivityView(false)
-                    // Display alert - deal w/ keyboard issue
-//                    self.displayAlert("Invalid Login", error: "Invalid ID or Password")
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.displayAlert("Invalid Login", error: "Invalid ID or Password")
+                        self.displayActivityView(false)
+                    })
                 } else {
-//                    println("RESULT \(result)")
-                    println(" loginButtonTapped: \(OTMClient.sharedInstance().userID)  \(OTMClient.sharedInstance().sessionID)")
                     self.displayActivityView(false)
                     var tabController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
                     self.presentViewController(tabController, animated: true, completion: nil)
                 }
             })
-//            self.displayAlert("Invalid Login", error: "Invalid ID or Password")
         } else {
-            // u/n or pw is blank stop indicator and display alert
             self.displayActivityView(false)
             self.displayAlert("Login Error", error: "Please enter a username and password")
         }
@@ -103,9 +85,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Helpers
     
     ///
-    /// Displays an UIAlertController
-    ///:param: title of Alert
-    ///:param: error message of alert
+    /// Displays an UIAlertController.
+    /// :param: title of Alert
+    /// :param: error message of alert
     func displayAlert(title:String, error:String) {
         
         var alert = UIAlertController(title: title, message: error, preferredStyle: UIAlertControllerStyle.Alert)
@@ -114,9 +96,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.dismissViewControllerAnimated(true, completion: nil)
             
         }))
-        
         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
     
     ///

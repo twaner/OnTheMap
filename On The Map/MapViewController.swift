@@ -34,7 +34,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 //        self.hidesBottomBarWhenPushed = false
         self.tabBarController?.tabBar.hidden = false
         self.navigationController?.navigationBarHidden = false
-        // TODO - get students, populate map with pins
         self.populate()
         
         if !self.currentUserOnMap {
@@ -55,6 +54,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     ///Creates a Student object from a dictionary.
     ///:param: dictionary Dictionary that contains student information.
     func createStudentFromPublicData(dictionary: NSDictionary) {
+        
+        if OTMClient.sharedInstance().currentUser == nil {
+            OTMClient.sharedInstance().currentUser = OTMStudent()
+        }
+    
         OTMClient.sharedInstance().currentUser!.uniqueKey = OTMClient.sharedInstance().userID!
         OTMClient.sharedInstance().currentUser!.firstName = dictionary.valueForKey(OTMClient.JSONResponseKeys.First_Name) as? String
         OTMClient.sharedInstance().currentUser!.lastName = dictionary.valueForKey(OTMClient.JSONResponseKeys.Last_Name) as? String
@@ -68,22 +72,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func getTester() {
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/\(OTMClient.sharedInstance().userID!)")!)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error...
-                println("getTester \(error)")
-                return
-            }
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            println(NSString(data: newData, encoding: NSUTF8StringEncoding))
-            let nd = NSString(data: newData, encoding: NSUTF8StringEncoding)
-        }
-        task.resume()
-
     }
     
     // MARK: - MKMapViewDelegate
@@ -111,30 +99,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        println("Callout Tapped ")
         if let url = view.annotation.subtitle {
             UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
         } else {
             self.displayAlert("Error", message: "Could not find a URL to launch", action: "OK")
         }
-        
     }
     
     // MARK: - IBActions
     
     @IBAction func actionTapped(sender: UIBarButtonItem) {
-        // If user is on the list warning; if not just go to add location VC
         if self.currentUserOnMap {
-            
             var alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite it?", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Overwrite", style: .Default, handler: { (action) -> Void in
                 self.performSegueWithIdentifier("showAddSegue", sender: self)
-//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("AddVC") as! AddLocationViewController
-//                vc.overWrite = self.currentUserOnMap
-//                self.navigationController?.pushViewController(vc, animated: true)
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { action in
-            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
             self.performSegueWithIdentifier("showAddSegue", sender: self)
@@ -155,12 +135,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if success {
                 if let students = result {
                     self.students = students
-                    // Create annotations
                     for q in self.students {
                         if q.uniqueKey == OTMClient.sharedInstance().userID! {
                             OTMClient.sharedInstance().currentUser = q
                             self.currentUserOnMap = true
-                            println("ON THE MAP!")
+                            OTMClient.sharedInstance().studentInList = true
                         }
                         let location = CLLocationCoordinate2D(latitude: Double(q.latitude!), longitude: Double(q.longitude!))
                         let annotation = MKPointAnnotation()
@@ -171,15 +150,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                         } else {
                             annotation.subtitle = "No URL provided"
                         }
-                        
                         self.mapView.addAnnotation(annotation)
                         self.mapAnnotations.append(annotation)
                     }
-                    // Update on the main thread
                     dispatch_async(dispatch_get_main_queue()) {
-//                        for q in self.mapAnnotations {
-//                            self.mapView.addAnnotation(q)
-//                        }
                         self.mapView.showAnnotations(self.mapAnnotations, animated: true)
                     }
                 }
@@ -198,13 +172,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func displayAlert(title:String, message:String, action: String) {
         
         var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-
         alert.addAction(UIAlertAction(title: action, style: .Default, handler: { action in
-            
             self.dismissViewControllerAnimated(true, completion: nil)
-            
         }))
-        
         self.presentViewController(alert, animated: true, completion: nil)
     }
 

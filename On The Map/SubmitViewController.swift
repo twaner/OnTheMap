@@ -50,6 +50,8 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    ///
+    /// TextField delegate method that will check if the text entered into the textbox is a valid URL. Sets the validURL variable in block.
     func textFieldDidEndEditing(textField: UITextField) {
         let type: NSTextCheckingType = .Link
         var error: NSError?
@@ -64,10 +66,6 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        // :TODO - Go back to MapView
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MapVC") as! MapViewController
-//        self.presentViewController(vc, animated: true, completion: nil)
-//        self.performSegueWithIdentifier("BackToMapSegue", sender: self)
         self.goToMapView()
     }
     
@@ -83,12 +81,8 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
                 self.newRecord()
             }
         } else {
-//            let url = self.linkTextField.text
-//            self.displayAlert("Incorrect URL", error: "\(url) is not a valid URL. Please enter a correct one.")
-        }
-        let url = NSURL(string: self.linkTextField.text)
-        if (url != nil && url?.scheme != nil && url?.host != nil) {
-            println("NSURL WORKS")
+            let url = self.linkTextField.text
+            self.displayAlert("Incorrect URL", error: "\(url) is not a valid URL. Please enter a correct one.")
         }
     }
     
@@ -102,8 +96,6 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         
         var alert = UIAlertController(title: title, message: error, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-//            self.dismissViewControllerAnimated(true, completion: nil)
-            
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -121,10 +113,11 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
         self.mapView.showAnnotations([annotation], animated: true)
      }
     
+    ///
+    /// Returns to the previous Tab Bar Controller on the main queue to ensure map view can be loaded during a block.
     func goToMapView() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("MapVC") as! MapViewController
-            self.presentViewController(nextVC, animated: true, completion: nil)
+            self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         })
     }
     
@@ -133,10 +126,8 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
     func newRecord() {
         OTMClient.sharedInstance().postStudentLocation(OTMClient.sharedInstance().currentUser!, placemark: self.placemark!, completionHandler: { (sucess, result, error) -> Void in
             if let error = error {
-                println("newRecord error \(error)")
-                // TODO: Warning failed to post locations
+                self.displayAlert("Error", error: "Could not post location. Please try again.")
             } else {
-                println("getCoordinates result \(result)")
                 self.goToMapView()
             }
         })
@@ -147,22 +138,10 @@ class SubmitViewController: UIViewController, UITextFieldDelegate {
     func updateRecord() {
         OTMClient.sharedInstance().putStudentLocation(OTMClient.sharedInstance().currentUser!, placemark: self.placemark!) { (sucess, result, error) -> Void in
             if let error = error {
-                println("updateRecord error \(error)")
-                // TODO: Warning failed to post locations
+               self.displayAlert("Error", error: "Could not post location. Please try again.")
             } else {
-                println("getCoordinates result \(result)")
                 self.goToMapView()
             }
-        }
-    }
-    
-    // MARK: - Navigation
-    
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "BackToMapSegue" {
-//            let nextVC = 
         }
     }
 }
