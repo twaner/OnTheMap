@@ -21,6 +21,7 @@
 		19DD7F991AEB24730088EA94 /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */; };
 		19DD7F9B1AED8D5C0088EA94 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */; };
 		19FDE4791AF81FA9007857EC /* SubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FDE4781AF81FA9007857EC /* SubmitViewController.swift */; };
+		7E0A70CF1AFAC25500155E08 /* OTMNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A70CE1AFAC25500155E08 /* OTMNetworkClient.swift */; };
 		7EE5ADD51AF94B15005E310D /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE5ADD41AF94B15005E310D /* AddRecordViewController.swift */; };
 		7EE5ADD71AF963BD005E310D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE5ADD61AF963BD005E310D /* MapKit.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		19DD7F981AEB24730088EA94 /* StudentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewController.swift; sourceTree = "<group>"; };
 		19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		19FDE4781AF81FA9007857EC /* SubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitViewController.swift; sourceTree = "<group>"; };
+		7E0A70CE1AFAC25500155E08 /* OTMNetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMNetworkClient.swift; sourceTree = "<group>"; };
 		7EE5ADD41AF94B15005E310D /* AddRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
 		7EE5ADD61AF963BD005E310D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 				19DD7F8E1AE9D5B70088EA94 /* OTMConstants.swift */,
 				19DD7F901AE9D9F90088EA94 /* OTMConvenience.swift */,
 				19DD7F921AE9DA370088EA94 /* OTMStudent.swift */,
+				7E0A70CE1AFAC25500155E08 /* OTMNetworkClient.swift */,
 			);
 			name = OTM;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				19FDE4791AF81FA9007857EC /* SubmitViewController.swift in Sources */,
 				19DD7F8F1AE9D5B70088EA94 /* OTMConstants.swift in Sources */,
 				19DD7F6A1AE9CBB20088EA94 /* AppDelegate.swift in Sources */,
+				7E0A70CF1AFAC25500155E08 /* OTMNetworkClient.swift in Sources */,
 				19DD7F971AEB24410088EA94 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

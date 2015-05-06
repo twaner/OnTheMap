@@ -31,7 +31,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        self.hidesBottomBarWhenPushed = false
         self.tabBarController?.tabBar.hidden = false
         self.navigationController?.navigationBarHidden = false
         self.populate()
@@ -47,8 +46,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             })
         }
     }
-    
-    //TODO Handle not being able to get student data
     
     ///
     ///Creates a Student object from a dictionary.
@@ -180,7 +177,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAddSegue" {
             let nextVC = segue.destinationViewController as! AddLocationViewController

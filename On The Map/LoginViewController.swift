@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.activityIndicator.alpha = 0.0
         self.navigationItem.title = "On The Map"
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,42 +44,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-//        var beginning: UITextPosition = textField.beginningOfDocument
-//        var start: UITextPosition =  textField.positionFromPosition(beginning, inDirection: .Right, offset: range.location)!
-//        var end: UITextPosition = textField.positionFromPosition(start, offset: range.length)!
-//        var textRange: UITextRange = textField.textRangeFromPosition(start, toPosition: end)!
-//        
-//        textField.replaceRange(textRange, withText: string.uppercaseString)
-//        return false
-//    }
-    
     // MARK: - Actions
-
+    
+    
     @IBAction func loginButtonTapped(sender: UIButton) {
         self.displayActivityView(true)
-        if !self.userNameTextField.text.isEmpty && !self.passwordTextField.text.isEmpty {
-            OTMClient.sharedInstance().postCreateSession(userNameTextField.text, password: passwordTextField.text, completionHandler: { (result, error) -> Void in
-                if let error = error {
-                    self.displayActivityView(false)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.displayAlert("Invalid Login", error: "Invalid ID or Password")
+        if OTMNetworkClient.isConnectedToNetwork() {
+            if !self.userNameTextField.text.isEmpty && !self.passwordTextField.text.isEmpty {
+                OTMClient.sharedInstance().postCreateSession(userNameTextField.text, password: passwordTextField.text, completionHandler: { (result, error) -> Void in
+                    if let error = error {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.displayActivityView(false)
+                            self.displayAlert("Invalid Login", error: "Invalid ID or Password")
+                        })
+                    } else {
                         self.displayActivityView(false)
-                    })
-                } else {
-                    self.displayActivityView(false)
-                    var tabController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
-                    self.presentViewController(tabController, animated: true, completion: nil)
-                }
-            })
+                        var tabController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
+                        self.presentViewController(tabController, animated: true, completion: nil)
+                    }
+                })
+            } else {
+                self.displayActivityView(false)
+                self.displayAlert("Login Error", error: "Please enter a username and password")
+            }
         } else {
             self.displayActivityView(false)
-            self.displayAlert("Login Error", error: "Please enter a username and password")
+            self.checkForNetwork()
         }
     }
     
     @IBAction func fbLoginButtonTapped(sender: UIButton) {
-        // TODO
+        
     }
     
     // MARK: - Helpers
@@ -97,6 +92,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
         }))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func checkForNetwork() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if !OTMNetworkClient.isConnectedToNetwork() {
+                println("NO COnenction")
+                self.displayAlert("Error", error: "No internet connection is available.")
+            }
+        })
     }
     
     ///
