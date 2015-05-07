@@ -14,9 +14,9 @@ extension OTMClient {
     struct Constants {
         // MARK: - API Keys
         
-        static let FaceBookApiKey = "365362206864879"
-        static let ParseApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-        static let ParseRestApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let FaceBookApiKey = "key"
+        static let ParseApplicationID = "key"
+        static let ParseRestApiKey = "key"
         
         // MARK: - URLs
         
