@@ -55,21 +55,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if let error = error {
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.displayActivityView(false)
-                            self.displayAlert("Invalid Login", error: "Invalid ID or Password")
+                            OTMClient.sharedInstance().displayAlert("Invalid Login", error: "Please check ID or Password", controller: self)
                         })
                     } else {
                         self.displayActivityView(false)
                         var tabController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
-                        self.presentViewController(tabController, animated: true, completion: nil)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.presentViewController(tabController, animated: true, completion: nil)
+                        })
                     }
                 })
             } else {
-                self.displayActivityView(false)
-                self.displayAlert("Login Error", error: "Please enter a username and password")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.displayActivityView(false)
+                    var errorString = "Please enter a "
+                    if self.userNameTextField.text.isEmpty && self.passwordTextField.text.isEmpty {
+                        errorString += "username and password"
+                    } else if self.userNameTextField.text.isEmpty {
+                        errorString += "username"
+                    } else {
+                        errorString += "password"
+                    }
+                    OTMClient.sharedInstance().displayAlert("Login Error", error: errorString, controller: self)
+                })
             }
         } else {
-            self.displayActivityView(false)
-            self.checkForNetwork()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.displayActivityView(false)
+                OTMClient.sharedInstance().checkForNetwork(self)
+            })
         }
     }
     
@@ -78,29 +92,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Helpers
-    
-    /// Displays an UIAlertController.
-    /// :param: title of Alert
-    /// :param: error message of alert
-    func displayAlert(title:String, error:String) {
-        
-        var alert = UIAlertController(title: title, message: error, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-            
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func checkForNetwork() {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            if !OTMNetworkClient.isConnectedToNetwork() {
-                println("NO COnenction")
-                self.displayAlert("Error", error: "No internet connection is available.")
-            }
-        })
-    }
     
     ///
     /// Displays or hides an activity indicator.

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class OTMClient: NSObject {
     
@@ -205,6 +206,32 @@ class OTMClient: NSObject {
         
         return error
     }
+    
+    ///
+    /// Checks device for network connectivity
+    /// :param: controller UIViewController to invoke actions.
+    func checkForNetwork(controller: UIViewController) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            if !OTMNetworkClient.isConnectedToNetwork() {
+                self.displayAlert("Error", error: "No internet connection is available.", controller: controller)
+            }
+        })
+    }
+    
+    ///
+    /// Displays an UIAlertController.
+    /// :param: title of Alert
+    /// :param: error message of alert
+    /// :param: controller UIViewController to present alert.
+    func displayAlert(title:String, error:String, controller: UIViewController) {
+        
+        var alert = UIAlertController(title: title, message: error, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            controller.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     /* Helper: Given raw JSON, return a usable Foundation object */
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
