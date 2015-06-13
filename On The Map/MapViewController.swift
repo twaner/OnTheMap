@@ -51,6 +51,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     ///
     ///Creates a Student object from a dictionary.
+    ///
     ///:param: dictionary Dictionary that contains student information.
     func createStudentFromPublicData(dictionary: NSDictionary) {
         
@@ -165,7 +166,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     }
                 }
             } else {
-                self.displayAlert("Error", message: "Could not download data", action: "OK")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.displayAlert("Error", message: "Could not download data", action: "OK")
+                })
             }
         }
     }

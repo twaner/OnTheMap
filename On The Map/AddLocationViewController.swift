@@ -27,8 +27,6 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.textField.delegate = self
         self.displayActivityView(false)
-//        self.hidesBottomBarWhenPushed = false
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -37,7 +35,6 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - MapKit
@@ -54,12 +51,14 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
                 if (placemarks != nil && placemarks.count > 0) {
                     let result = placemarks[0] as! CLPlacemark
                     self.locationPlacemark = MKPlacemark(placemark: result)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.displayActivityView(false)
                         self.performSegueWithIdentifier("SubmitSegue", sender: self)
+                    })
                 } else {
-                    println("Issue with placemark")
-                    // TODO: Warning failed to post placemark
-                    self.displayActivityView(false)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.displayActivityView(false)
+                    })
                 }
             }
         })
@@ -119,8 +118,9 @@ class AddLocationViewController: UIViewController, UITextFieldDelegate {
     
     ///
     /// Displays an UIAlertController
-    ///:param: title of Alert
-    ///:param: error message of alert
+    ///
+    /// :param: title of Alert
+    /// :param: error message of alert
     func displayAlert(title:String, error:String) {
         
         var alert = UIAlertController(title: title, message: error, preferredStyle: UIAlertControllerStyle.Alert)

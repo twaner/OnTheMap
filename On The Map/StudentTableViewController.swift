@@ -113,7 +113,9 @@ class StudentTableViewController: UITableViewController {
                     }
                 }
             } else {
-                self.displayAlert("Error", error: "Could not download data")
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.displayAlert("Error", error: "Could not download data")
+                })
             }
         }
     }

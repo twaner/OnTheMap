@@ -73,6 +73,7 @@ class SubmitViewController: UIViewController, UITextFieldDelegate, MKMapViewDele
     
     ///
     ///Checks if the URL submitted is valid and updates the current user's media url.
+    ///
     ///:param: sender Button on UI
     @IBAction func submitButtonTapped(sender: UIButton) {
         if self.validURL {
