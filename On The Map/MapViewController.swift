@@ -125,7 +125,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.populate()
     }
     
-    
     // MARK: - Helpers
     
     ///

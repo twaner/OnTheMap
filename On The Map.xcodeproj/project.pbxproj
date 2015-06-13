@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19D778AD1B2BC79A001AABCE /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D778AC1B2BC79A001AABCE /* UIViewControllerExtension.swift */; };
 		19DD7F6A1AE9CBB20088EA94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD7F691AE9CBB20088EA94 /* AppDelegate.swift */; };
 		19DD7F6F1AE9CBB20088EA94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19DD7F6D1AE9CBB20088EA94 /* Main.storyboard */; };
 		19DD7F711AE9CBB20088EA94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19DD7F701AE9CBB20088EA94 /* Images.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19D778AC1B2BC79A001AABCE /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		19DD7F641AE9CBB20088EA94 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19DD7F681AE9CBB20088EA94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19DD7F691AE9CBB20088EA94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				19DD7F9A1AED8D5C0088EA94 /* AddLocationViewController.swift */,
 				19FDE4781AF81FA9007857EC /* SubmitViewController.swift */,
 				7EE5ADD41AF94B15005E310D /* AddRecordViewController.swift */,
+				19D778AC1B2BC79A001AABCE /* UIViewControllerExtension.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				19DD7F8D1AE9CCE50088EA94 /* OTMClient.swift in Sources */,
 				19FDE4791AF81FA9007857EC /* SubmitViewController.swift in Sources */,
 				19DD7F8F1AE9D5B70088EA94 /* OTMConstants.swift in Sources */,
+				19D778AD1B2BC79A001AABCE /* UIViewControllerExtension.swift in Sources */,
 				19DD7F6A1AE9CBB20088EA94 /* AppDelegate.swift in Sources */,
 				7E0A70CF1AFAC25500155E08 /* OTMNetworkClient.swift in Sources */,
 				19DD7F971AEB24410088EA94 /* MapViewController.swift in Sources */,
