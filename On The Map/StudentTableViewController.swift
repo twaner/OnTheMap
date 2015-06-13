@@ -25,6 +25,8 @@ class StudentTableViewController: UITableViewController {
 
         self.navigationItem.title = "On The Map"
         self.hidesBottomBarWhenPushed = false
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: Selector("logout"))
+        self.navigationItem.rightBarButtonItems?.append(cancelButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,6 +93,14 @@ class StudentTableViewController: UITableViewController {
     }
     
     // MARK: - Helpers
+    
+    ///
+    /// Logs the user out; deletes current session object; and returns to the login screen.
+    ///
+    func logout(){
+        OTMClient.sharedInstance().logout()
+        performSegueWithIdentifier("loginUnwindSegue", sender: self)
+    }
     
     ///
     /// Populates the OTMStudent data source for the view by getting student locations from Parse

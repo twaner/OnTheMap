@@ -46,6 +46,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     
+    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
+    }
     
     @IBAction func loginButtonTapped(sender: UIButton) {
         self.displayActivityView(true)
@@ -58,9 +60,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             OTMClient.sharedInstance().displayAlert("Invalid Login", error: "Please check ID or Password", controller: self)
                         })
                     } else {
-                        self.displayActivityView(false)
                         var tabController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as! UITabBarController
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.displayActivityView(false)
                             self.presentViewController(tabController, animated: true, completion: nil)
                         })
                     }
@@ -85,6 +87,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 OTMClient.sharedInstance().checkForNetwork(self)
             })
         }
+        
     }
     
     @IBAction func fbLoginButtonTapped(sender: UIButton) {

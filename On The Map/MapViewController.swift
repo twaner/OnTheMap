@@ -27,6 +27,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         self.mapView.delegate = self
         self.navigationItem.title = "On The Map"
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: Selector("logout"))
+        self.navigationItem.rightBarButtonItems?.append(cancelButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -126,6 +128,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Helpers
     
     ///
+    /// Logs the user out; deletes current session object; and returns to the login screen.
+    ///
+    func logout(){
+        OTMClient.sharedInstance().logout()
+        performSegueWithIdentifier("loginUnwindSegue", sender: self)
+    }
+    
+    ///
     /// Populates the data for the view. This method will call the Get Student Locations API to get locations and will add them to the view.
     func populate() {
         OTMClient.sharedInstance().getStudentLocations { (success, result, error) -> Void in
@@ -186,8 +196,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 nextVC.overWrite = false
             }
         }
-
     }
-
-
 }

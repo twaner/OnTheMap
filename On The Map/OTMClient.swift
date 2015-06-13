@@ -25,6 +25,13 @@ class OTMClient: NSObject {
         super.init()
     }
     
+    func logout(){
+        self.sessionID = nil
+        self.userID = nil
+        self.currentUser = nil
+        self.studentInList = false
+    }
+    
     // MARK: - POST
     
     ///
