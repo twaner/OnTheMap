@@ -18,15 +18,13 @@ class StudentTableViewController: UITableViewController {
     
     // MARK: - Props
     
-    var students: [OTMStudent] = [OTMStudent]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "On The Map"
         self.hidesBottomBarWhenPushed = false
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: Selector("logout"))
-        self.navigationItem.rightBarButtonItems?.append(cancelButton)
+        self.navigationItem.leftBarButtonItems?.append(cancelButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,19 +50,20 @@ class StudentTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        return self.students.count
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return OTMClient.sharedInstance().students.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-        let student = students[indexPath.row]
+        let student = OTMClient.sharedInstance().students[indexPath.row]
         cell.textLabel?.text = student.firstName! + " " + student.lastName!
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let student = students[indexPath.row]
+        let student = OTMClient.sharedInstance().students[indexPath.row]
         if let mediaURL = student.mediaURL {
             UIApplication.sharedApplication().openURL(NSURL(string: mediaURL)!)
         } else {
@@ -108,7 +107,7 @@ class StudentTableViewController: UITableViewController {
         OTMClient.sharedInstance().getStudentLocations { (success, result, error) -> Void in
             if success {
                 if let students = result {
-                    self.students = students
+                    OTMClient.sharedInstance().students = students
                     dispatch_async(dispatch_get_main_queue()) { self.tableView.reloadData()
                     }
                 }

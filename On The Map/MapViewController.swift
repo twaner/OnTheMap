@@ -17,7 +17,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Props
     
-    var students: [OTMStudent] = [OTMStudent]()
     var currentStudent: OTMStudent = OTMStudent()
     var mapAnnotations: [MKPointAnnotation] = [MKPointAnnotation]()
     var getUdacityUser: NSDictionary?
@@ -28,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self
         self.navigationItem.title = "On The Map"
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: Selector("logout"))
-        self.navigationItem.rightBarButtonItems?.append(cancelButton)
+        self.navigationItem.leftBarButtonItems?.append(cancelButton)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -141,8 +140,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         OTMClient.sharedInstance().getStudentLocations { (success, result, error) -> Void in
             if success {
                 if let students = result {
-                    self.students = students
-                    for q in self.students {
+                    OTMClient.sharedInstance().students = students
+                    for q in OTMClient.sharedInstance().students {
                         if q.uniqueKey == OTMClient.sharedInstance().userID! {
                             OTMClient.sharedInstance().currentUser = q
                             self.currentUserOnMap = true

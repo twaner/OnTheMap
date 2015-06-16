@@ -19,6 +19,7 @@ class OTMClient: NSObject {
     var userID: String? = nil
     var currentUser: OTMStudent? = nil
     var studentInList: Bool = false
+    var students: [OTMStudent] = [OTMStudent]()
     
     override init() {
         session = NSURLSession.sharedSession()
@@ -30,6 +31,7 @@ class OTMClient: NSObject {
         self.userID = nil
         self.currentUser = nil
         self.studentInList = false
+        self.students = [OTMStudent]()
     }
     
     // MARK: - POST
