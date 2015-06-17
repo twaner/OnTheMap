@@ -113,16 +113,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1eJ-Vo-qc4">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="C47-rh-Zta">
-                            <connections>
-                                <action selector="actionTapped:" destination="g9K-90-2h0" id="2Oh-TP-A9M"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="yTn-hn-C5Z">
-                            <connections>
-                                <action selector="refreshTapped:" destination="g9K-90-2h0" id="09e-kD-mW0"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="nes-BY-K8x"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="grc-fs-N2N"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="LVt-7J-2YF" id="zB9-Bp-czf"/>
@@ -157,20 +149,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="O1u-aA-6Le">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="UHf-eU-viu">
-                            <connections>
-                                <action selector="postToMapTapped:" destination="LNj-PX-h4z" id="Pye-E9-IN4"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="SSZ-k3-gIy">
-                            <connections>
-                                <action selector="refreshTapped:" destination="LNj-PX-h4z" id="jqL-Hn-nlt"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="uwS-uj-fKy"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="6P3-aK-G5o"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="postToMapTapped" destination="UHf-eU-viu" id="Kcu-x8-27f"/>
-                        <outlet property="refreshTapped" destination="SSZ-k3-gIy" id="u4D-Y7-gNG"/>
                         <segue destination="NWa-fG-bZh" kind="presentation" identifier="showAddSegue" id="dqJ-DD-HvW"/>
                         <segue destination="pvo-CG-pja" kind="unwind" identifier="loginUnwindSegue" unwindAction="unwindToThisViewController:" id="iGy-6f-zVr"/>
                     </connections>
@@ -615,6 +597,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qlL-Gd-p8Z"/>
+        <segue reference="dqJ-DD-HvW"/>
     </inferredMetricsTieBreakers>
 </document>

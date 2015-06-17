@@ -14,7 +14,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     
-    
     // MARK: - Props
     
     var currentStudent: OTMStudent = OTMStudent()
@@ -26,8 +25,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         self.mapView.delegate = self
         self.navigationItem.title = "On The Map"
+        
+        let addPinButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action:
+            Selector("addPin"))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: Selector("populate"))
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: Selector("logout"))
-        self.navigationItem.leftBarButtonItems?.append(cancelButton)
+        self.navigationItem.rightBarButtonItem = addPinButton
+        self.navigationItem.rightBarButtonItems?.append(refreshButton)
+        self.navigationItem.leftBarButtonItem? = cancelButton
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -105,9 +110,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    // MARK: - IBActions
+    // MARK: - Helpers
     
-    @IBAction func actionTapped(sender: UIBarButtonItem) {
+    ///
+    /// Prompts the user to add a pin to the current map.
+    ///
+    func addPin() {
         if self.currentUserOnMap {
             var alert = UIAlertController(title: "", message: "You have already posted a student location. Would you like to overwrite it?", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Overwrite", style: .Default, handler: { (action) -> Void in
@@ -119,12 +127,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             self.performSegueWithIdentifier("showAddSegue", sender: self)
         }
     }
-    
-    @IBAction func refreshTapped(sender: UIBarButtonItem) {
-        self.populate()
-    }
-    
-    // MARK: - Helpers
     
     ///
     /// Logs the user out; deletes current session object; and returns to the login screen.
