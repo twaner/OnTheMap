@@ -78,7 +78,6 @@ class StudentTableViewController: UITableViewController {
         } else {
             self.performSegueWithIdentifier("showAddSegue", sender: self)
         }
-        
     }
     
     ///
@@ -121,7 +120,5 @@ class StudentTableViewController: UITableViewController {
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
-
 }
